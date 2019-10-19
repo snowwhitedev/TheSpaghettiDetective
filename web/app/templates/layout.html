@@ -1,5 +1,8 @@
 {% load static %}
 {% load hijack_tags %}
+
+{% load render_bundle from webpack_loader %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,6 +53,7 @@
   {% for extrajs in settings.EXTRA_JS %}
   <script async src={{extrajs}}></script>
   {% endfor %}
+
 </head>
 
 <body>
@@ -171,6 +175,9 @@
   </script>
   <script src="{% static 'js/shared.js' %}"></script>
   {% block page_js %}{% endblock page_js %}
+
+  <script type="text/javascript" src="{% static 'bundle.js' %}"></script>
+
 </body>
 
 </html>

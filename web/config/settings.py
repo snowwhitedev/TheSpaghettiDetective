@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'api',
+    'webpack_loader',
 ]
 
 if os.environ.get('SOCIAL_LOGIN') == 'True':
@@ -178,6 +179,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_build')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'dist'),
+)
 # Allauth
 
 AUTHENTICATION_BACKENDS = (
@@ -291,3 +295,14 @@ ROLLING_MEAN_SHORT_MULTIPLE = float(
 ESCALATING_FACTOR = float(os.environ.get('ESCALATING_FACTOR', 1.75))
 
 TIMELAPSE_MINIMUM_SECONDS = 5 if DEBUG else 300
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': '',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+    }
+}

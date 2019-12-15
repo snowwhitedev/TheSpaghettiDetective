@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
 import django.utils.timezone
-import jsonfield.fields
+#import jsonfield.fields
 
 
 class Migration(migrations.Migration):
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('video_url', models.CharField(max_length=2000)),
                 ('poster_url', models.CharField(max_length=2000)),
                 ('creator_name', models.CharField(max_length=500)),
-                ('frame_p', jsonfield.fields.JSONField(default=list)),
+                #('frame_p', jsonfield.fields.JSONField(default=list)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('uploaded_by', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
